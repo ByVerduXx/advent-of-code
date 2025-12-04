@@ -20,15 +20,16 @@ public class Solver<C> {
     public <T> void handleProblem(Function<List<String>, T> solve) {
         List<String> lines = automatedFileReader.readList(clazz);
 
-        T res = solve.apply(lines);
-        log.info("Result: {}", res);
+        logResult(solve.apply(lines));
 
     }
 
     public <T> void handleProblemLine(Function<String, T> solve) {
         String line = automatedFileReader.readLine(clazz);
+        logResult(solve.apply(line));
+    }
 
-        T res = solve.apply(line);
-        log.info("Result: {}", res);
+    private <T> void logResult(T result) {
+        log.info("Result: {}", result);
     }
 }
