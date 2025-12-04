@@ -1,7 +1,6 @@
 package es.verdu.advent.utils;
 
 import es.verdu.advent.utils.reader.AutomatedFileReader;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
