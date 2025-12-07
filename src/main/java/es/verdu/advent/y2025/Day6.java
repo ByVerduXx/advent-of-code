@@ -53,29 +53,7 @@ public class Day6 {
         List<List<Integer>> problems = new ArrayList<>();
 
         for (int i = 1; i <= opsPosition.size(); i++) {
-            List<String> currentProblemString = new ArrayList<>();
-            for (String row : problemRows) {
-                String currentOp;
-                if (i == opsPosition.size()) {
-                    currentOp = row.substring(opsPosition.get(i - 1));
-                } else {
-                    currentOp = row.substring(opsPosition.get(i - 1), opsPosition.get(i) - 1);
-                }
-                currentProblemString.add(currentOp);
-            }
-
-            List<Integer> currentProblem = new ArrayList<>();
-
-            for (int j = currentProblemString.getFirst().length() - 1; j >= 0; j--) {
-                StringBuilder arrangedOp = new StringBuilder();
-                for (String s : currentProblemString) {
-                    char ch = s.charAt(j);
-                    if (ch == ' ') continue;
-                    arrangedOp.append(ch);
-                }
-
-                currentProblem.add(Integer.parseInt(arrangedOp.toString()));
-            }
+            List<Integer> currentProblem = getIntegers(problemRows, i, opsPosition);
 
             problems.add(currentProblem);
         }
@@ -86,6 +64,33 @@ public class Day6 {
 
         return result;
     };
+
+    private static List<Integer> getIntegers(List<String> problemRows, int i, List<Integer> opsPosition) {
+        List<String> currentProblemString = new ArrayList<>();
+        for (String row : problemRows) {
+            String currentOp;
+            if (i == opsPosition.size()) {
+                currentOp = row.substring(opsPosition.get(i - 1));
+            } else {
+                currentOp = row.substring(opsPosition.get(i - 1), opsPosition.get(i) - 1);
+            }
+            currentProblemString.add(currentOp);
+        }
+
+        List<Integer> currentProblem = new ArrayList<>();
+
+        for (int j = currentProblemString.getFirst().length() - 1; j >= 0; j--) {
+            StringBuilder arrangedOp = new StringBuilder();
+            for (String s : currentProblemString) {
+                char ch = s.charAt(j);
+                if (ch == ' ') continue;
+                arrangedOp.append(ch);
+            }
+
+            currentProblem.add(Integer.parseInt(arrangedOp.toString()));
+        }
+        return currentProblem;
+    }
 
 
     private static Long op(String op, List<Integer> list) {
